@@ -8,9 +8,9 @@
 				<camera name="head">
 					<horizontal_fov>${radians(69.4)}</horizontal_fov>
 					<image>
-						<width>1280</width>
-						<height>960</height>
-						<format>R8G8B8</format>
+						<width>640</width>
+						<height>480</height>
+						<format>B8G8R8</format>
 					</image>
 					<clip>
 						<near>0.02</near>
@@ -25,11 +25,11 @@
 					<imageTopicName>rgb/image_raw</imageTopicName>
 					<depthImageTopicName>depth_registered/image_raw</depthImageTopicName>
 					<pointCloudTopicName>depth_registered/points</pointCloudTopicName>
+          <frameName>camera_depth_optical_frame</frameName>
 					<pointCloudCutoff>0.105</pointCloudCutoff>
 					<pointCloudCutoffMax>10.0</pointCloudCutoffMax>
 					<cameraInfoTopicName>rgb/camera_info</cameraInfoTopicName>
 					<depthImageCameraInfoTopicName>depth_registered/camera_info</depthImageCameraInfoTopicName>
-					<frameName>camera_link</frameName>
 					<hackBaseline>0.07</hackBaseline>
 					<distortionK1>0.0</distortionK1>
 					<distortionK2>0.0</distortionK2>
