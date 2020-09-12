@@ -1,4 +1,4 @@
-# crane_x7_d435
+# crane_x7_d435[wip]
 
 ## Description
 [crane_x7_Hardware](https://github.com/rt-net/crane_x7_Hardware/blob/master/Drawing/CRANE-X7_with_RealSenseD435.pdf)に記載されている位置にD435をとりつけたURDFです
