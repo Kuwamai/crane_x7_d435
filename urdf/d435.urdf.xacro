@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find crane_x7_d435)/urdf/d435.gazebo.xacro" />
+  <xacro:macro name="hand_eye_camera" params="parent *joint_origin">
+    <joint name="camera_joint" type="fixed">
+      <xacro:insert_block name="joint_origin"/>
+      <parent link="${parent}"/>
+      <child  link="camera_base"/>
+    </joint>
+
+    <link name="camera_base">
+      <inertial>
+        <mass value="0.6"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <inertia ixx="1e-3" ixy="0.0" ixz="0.0" iyy="1e-3" iyz="0.0" izz="1e-3"/>
+      </inertial>
+      <visual>
+        <origin xyz="${0.02505/2} 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.02505 0.09 0.025"/>
+        </geometry>
+        <material name="yellow">
+          <color rgba="1 1 0 1" />
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="${0.02505/2} 0 0" rpy="0 0 0"/>
+        <geometry>
+          <box size="0.02505 0.09 0.025"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <joint name="camera_link_joint" type="fixed">
+      <origin xyz="0.02085 0.0175 0" rpy="0 0 0"/>
+      <parent link="camera_base"/>
+      <child  link="camera_link"/>
+    </joint>
+
+    <link name="camera_link">
+    </link>
+
+  </xacro:macro>
+</robot>
