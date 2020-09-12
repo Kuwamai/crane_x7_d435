@@ -38,8 +38,7 @@
       <child  link="camera_link"/>
     </joint>
 
-    <link name="camera_link">
-    </link>
+    <link name="camera_link"/>
 
   </xacro:macro>
 </robot>
