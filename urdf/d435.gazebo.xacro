@@ -1,43 +1,43 @@
 <?xml version="1.0"?>
 
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
-	<xacro:macro name="d435_gazebo">
-		<gazebo reference="camera_link">
-			<sensor type="depth" name="camera1">
-				<update_rate>30.0</update_rate>
-				<camera name="head">
-					<horizontal_fov>${radians(69.4)}</horizontal_fov>
-					<image>
-						<width>640</width>
-						<height>480</height>
-						<format>B8G8R8</format>
-					</image>
-					<clip>
-						<near>0.02</near>
-						<far>300</far>
-					</clip>
-				</camera>
-				<plugin name="camera_plugin" filename="libgazebo_ros_openni_kinect.so">
-					<baseline>0.2</baseline>
-					<alwaysOn>true</alwaysOn>
-					<updateRate>0.0</updateRate>
-					<cameraName>camera</cameraName>
-					<imageTopicName>rgb/image_raw</imageTopicName>
-					<depthImageTopicName>depth_registered/image_raw</depthImageTopicName>
-					<pointCloudTopicName>depth_registered/points</pointCloudTopicName>
+  <xacro:macro name="d435_gazebo">
+    <gazebo reference="camera_link">
+      <sensor type="depth" name="camera1">
+        <update_rate>30.0</update_rate>
+        <camera name="head">
+          <horizontal_fov>${radians(69.4)}</horizontal_fov>
+          <image>
+            <width>640</width>
+            <height>480</height>
+            <format>B8G8R8</format>
+          </image>
+          <clip>
+            <near>0.02</near>
+            <far>300</far>
+          </clip>
+        </camera>
+        <plugin name="camera_plugin" filename="libgazebo_ros_openni_kinect.so">
+          <baseline>0.2</baseline>
+          <alwaysOn>true</alwaysOn>
+          <updateRate>0.0</updateRate>
+          <cameraName>camera</cameraName>
+          <imageTopicName>rgb/image_raw</imageTopicName>
+          <depthImageTopicName>depth_registered/image_raw</depthImageTopicName>
+          <pointCloudTopicName>depth_registered/points</pointCloudTopicName>
           <frameName>camera_depth_optical_frame</frameName>
-					<pointCloudCutoff>0.105</pointCloudCutoff>
-					<pointCloudCutoffMax>10.0</pointCloudCutoffMax>
-					<cameraInfoTopicName>rgb/camera_info</cameraInfoTopicName>
-					<depthImageCameraInfoTopicName>depth_registered/camera_info</depthImageCameraInfoTopicName>
-					<hackBaseline>0.07</hackBaseline>
-					<distortionK1>0.0</distortionK1>
-					<distortionK2>0.0</distortionK2>
-					<distortionK3>0.0</distortionK3>
-					<distortionT1>0.0</distortionT1>
-					<distortionT2>0.0</distortionT2>
-				</plugin>
-			</sensor>
-		</gazebo>
-	</xacro:macro>
+          <pointCloudCutoff>0.105</pointCloudCutoff>
+          <pointCloudCutoffMax>10.0</pointCloudCutoffMax>
+          <cameraInfoTopicName>rgb/camera_info</cameraInfoTopicName>
+          <depthImageCameraInfoTopicName>depth_registered/camera_info</depthImageCameraInfoTopicName>
+          <hackBaseline>0.07</hackBaseline>
+          <distortionK1>0.0</distortionK1>
+          <distortionK2>0.0</distortionK2>
+          <distortionK3>0.0</distortionK3>
+          <distortionT1>0.0</distortionT1>
+          <distortionT2>0.0</distortionT2>
+        </plugin>
+      </sensor>
+    </gazebo>
+  </xacro:macro>
 </robot>
