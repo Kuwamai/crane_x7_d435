@@ -1,11 +1,10 @@
 <?xml version="1.0"?>
 <launch>
   <arg name="use_effort_gripper" default="false" />
-
-  <node pkg="tf2_ros" type="static_transform_publisher" name="camera_link_broadcaster" args="0 0 0 -1.570796 0 -1.570796 camera_link camera_depth_optical_frame" />
+  <arg name="use_gazebo" default="true" />
 
   <include file="$(find crane_x7_gazebo)/launch/crane_x7_with_table.launch" />
   <param name="robot_description"
-    command="$(find xacro)/xacro --inorder '$(find crane_x7_d435)/urdf/crane_x7_d435.xacro' use_effort_gripper:=$(arg use_effort_gripper)"
+    command="$(find xacro)/xacro --inorder '$(find crane_x7_d435)/urdf/crane_x7_d435.xacro' use_effort_gripper:=$(arg use_effort_gripper) use_gazebo:=$(arg use_gazebo)"
     />
 </launch>
