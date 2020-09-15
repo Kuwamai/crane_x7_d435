@@ -2,10 +2,42 @@
 
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:macro name="d435_gazebo">
+    <joint name="camera_depth_frame_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <parent link="camera_link"/>
+      <child  link="camera_depth_frame"/>
+    </joint>
+
+    <link name="camera_depth_frame"/>
+
+    <joint name="camera_depth_optical_frame_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="${radians(-90)} 0 ${radians(-90)}"/>
+      <parent link="camera_depth_frame"/>
+      <child  link="camera_depth_optical_frame"/>
+    </joint>
+
+    <link name="camera_depth_optical_frame"/>
+
+    <joint name="camera_color_frame_joint" type="fixed">
+      <origin xyz="0 0.015 0" rpy="0 0 0"/>
+      <parent link="camera_link"/>
+      <child  link="camera_color_frame"/>
+    </joint>
+
+    <link name="camera_color_frame"/>
+
+    <joint name="camera_color_optical_frame_joint" type="fixed">
+      <origin xyz="0 0 0" rpy="${radians(-90)} 0 ${radians(-90)}"/>
+      <parent link="camera_color_frame"/>
+      <child  link="camera_color_optical_frame"/>
+    </joint>
+
+    <link name="camera_color_optical_frame"/>
+
     <gazebo reference="camera_link">
       <sensor type="depth" name="camera1">
         <update_rate>30.0</update_rate>
-        <camera name="head">
+        <camera name="depth_camera">
           <horizontal_fov>${radians(69.4)}</horizontal_fov>
           <image>
             <width>640</width>
@@ -22,14 +54,56 @@
           <alwaysOn>true</alwaysOn>
           <updateRate>0.0</updateRate>
           <cameraName>camera</cameraName>
-          <imageTopicName>rgb/image_raw</imageTopicName>
-          <depthImageTopicName>depth_registered/image_raw</depthImageTopicName>
-          <pointCloudTopicName>depth_registered/points</pointCloudTopicName>
+          <imageTopicName>fake_cam_color/image_raw</imageTopicName>
+          <depthImageTopicName>depth/image_raw</depthImageTopicName>
+          <pointCloudTopicName>depth/color/points</pointCloudTopicName>
           <frameName>camera_depth_optical_frame</frameName>
           <pointCloudCutoff>0.105</pointCloudCutoff>
           <pointCloudCutoffMax>10.0</pointCloudCutoffMax>
-          <cameraInfoTopicName>rgb/camera_info</cameraInfoTopicName>
-          <depthImageCameraInfoTopicName>depth_registered/camera_info</depthImageCameraInfoTopicName>
+          <cameraInfoTopicName>fake_cam_color/camera_info</cameraInfoTopicName>
+          <depthImageCameraInfoTopicName>depth/camera_info</depthImageCameraInfoTopicName>
+          <hackBaseline>0.07</hackBaseline>
+          <distortionK1>0.0</distortionK1>
+          <distortionK2>0.0</distortionK2>
+          <distortionK3>0.0</distortionK3>
+          <distortionT1>0.0</distortionT1>
+          <distortionT2>0.0</distortionT2>
+        </plugin>
+      </sensor>
+    </gazebo>
+
+    <joint name="camera_aligned_depth_to_color_frame_joint" type="fixed">
+      <origin xyz="0 0.015 0" rpy="0 0 0"/>
+      <parent link="camera_link"/>
+      <child  link="camera_aligned_depth_to_color_frame"/>
+    </joint>
+
+    <link name="camera_aligned_depth_to_color_frame"/>
+
+    <gazebo reference="camera_aligned_depth_to_color_frame">
+      <sensor type="depth" name="camera2">
+        <update_rate>30.0</update_rate>
+        <camera name="color_camera">
+          <horizontal_fov>${radians(69.4)}</horizontal_fov>
+          <image>
+            <width>640</width>
+            <height>480</height>
+            <format>B8G8R8</format>
+          </image>
+          <clip>
+            <near>0.02</near>
+            <far>300</far>
+          </clip>
+        </camera>
+        <plugin name="camera_plugin" filename="libgazebo_ros_openni_kinect.so">
+          <baseline>0.2</baseline>
+          <alwaysOn>true</alwaysOn>
+          <updateRate>0.0</updateRate>
+          <cameraName>camera</cameraName>
+          <imageTopicName>color/image_raw</imageTopicName>
+          <depthImageTopicName>aligned_depth_to_color/image_raw</depthImageTopicName>
+          <cameraInfoTopicName>color/camera_info</cameraInfoTopicName>
+          <depthImageCameraInfoTopicName>aligned_depth_to_color/camera_info</depthImageCameraInfoTopicName>
           <hackBaseline>0.07</hackBaseline>
           <distortionK1>0.0</distortionK1>
           <distortionK2>0.0</distortionK2>

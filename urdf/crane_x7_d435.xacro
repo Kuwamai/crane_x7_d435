@@ -1,9 +1,15 @@
 <?xml version="1.0"?>
 <robot name="crane_x7" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:arg name="use_gazebo" default="false" />
+
   <xacro:include filename="$(find crane_x7_description)/urdf/crane_x7.urdf.xacro"/>
   <xacro:include filename="$(find crane_x7_d435)/urdf/d435.urdf.xacro"/>
+
   <xacro:hand_eye_camera parent="crane_x7_gripper_base_link">
     <origin xyz="0.0 0.0445 0.009" rpy="${radians(-90)} ${radians(-90)} 0"/>
   </xacro:hand_eye_camera>
-  <xacro:d435_gazebo/>
+
+  <xacro:if value="$(arg use_gazebo)">
+    <xacro:d435_gazebo/>
+  </xacro:if>
 </robot>
