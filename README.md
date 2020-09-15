@@ -22,15 +22,17 @@
     ```
 
 ## Usage
-* 実機を動かす際は下記のコマンドを実行します
-    ```
-    $ roslaunch crane_x7_d435 bringup.launch
-    $ roslaunch realsense2_camera rs_camera.launch
-    ```
-* シミュレータ(GAZEBO)を起動する際は下記のコマンドを実行します
-    ```
-    $ roslaunch crane_x7_d435 bringup_sim.launch
-    ```
+* robot_description等に読み込む際、`crane_x7.urdf.xacro`だった箇所を`crane_x7_d435.xacro`に変更して使用してください
+* 動作を保証していませんが簡易的に試すことのできるlaunchファイルがあります
+    * 実機を動かす際は下記のコマンドを実行します
+        ```
+        $ roslaunch crane_x7_d435 bringup.launch
+        $ roslaunch realsense2_camera rs_camera.launch
+        ```
+    * シミュレータ(GAZEBO)を起動する際は下記のコマンドを実行します
+        ```
+        $ roslaunch crane_x7_d435 bringup_sim.launch
+        ```
 
 ## License
 This repository is licensed under the MIT license, see [LICENSE](./LICENSE).
