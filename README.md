@@ -1,7 +1,7 @@
 # crane_x7_d435
 
 ## Description
-[crane_x7_Hardware](https://github.com/rt-net/crane_x7_Hardware/blob/master/Drawing/CRANE-X7_with_RealSenseD435.pdf)に記載されている位置にD435をとりつけたURDFです
+[CRANE-X7](https://rt-net.jp/products/crane-x7/)の手先にD435をとりつけたURDFです。取り付け位置は[crane_x7_Hardware](https://github.com/rt-net/crane_x7_Hardware/blob/master/Drawing/CRANE-X7_with_RealSenseD435.pdf)に記載されているとおりです。
 
 ## Requirements
 下記環境で動作確認しています  
